@@ -20,8 +20,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 50)
-    private String loginId;
+    @Column(nullable = false, length = 50 , unique = true)
+    private String email;
 
     @Column(nullable = false)
     private String encryptedPwd;
@@ -42,14 +42,22 @@ public class User {
 
 
     @Builder
-    public User(String loginId, String encryptedPwd, String name, String phoneNumber, LocalDate birthday, Gender gender, String profileImage) {
-        this.loginId = loginId;
+    public User(String email, String encryptedPwd, String name, String phoneNumber, LocalDate birthday, Gender gender, String profileImage) {
+        this.email = email;
         this.encryptedPwd = encryptedPwd;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
         this.gender = gender;
         this.profileImage = profileImage;
+    }
+
+    public void updateEmail(String newEmail){
+        this.email = newEmail;
+    }
+
+    public void updatePassword(String newPassword) {
+        this.encryptedPwd = newPassword;
     }
 
     public void updateUser(RequestUpdateUser requestUpdateUser, String profileImageUrl) {

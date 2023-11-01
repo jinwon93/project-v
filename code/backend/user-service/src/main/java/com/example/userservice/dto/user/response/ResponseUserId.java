@@ -18,7 +18,7 @@ public class ResponseUserId {
     private Long id;
 
     @Schema(description = "로그인 아이디")
-    private String loginId;
+    private String email;
 
     @Schema(description = "유저 이름")
     private String name;
@@ -39,7 +39,7 @@ public class ResponseUserId {
     @Builder
     public ResponseUserId(User user) {
         this.id = user.getId();
-        this.loginId = user.getLoginId();
+        this.email = user.getEmail();
         this.name = user.getName();
         this.phoneNumber = user.getPhoneNumber();
         this.birthday = user.getBirthday();
