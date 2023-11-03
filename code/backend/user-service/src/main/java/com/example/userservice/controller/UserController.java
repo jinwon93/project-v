@@ -7,14 +7,12 @@ import com.example.userservice.dto.user.request.RequestUpdateUserPassword;
 import com.example.userservice.dto.user.request.RequestUserName;
 import com.example.userservice.dto.user.response.ResponseUserId;
 import com.example.userservice.dto.user.response.ResponseUserName;
-import com.example.userservice.service.UserService;
+import com.example.userservice.service.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -64,7 +62,7 @@ public class UserController {
 
 
     @GetMapping("/{user-name}")
-    public ResponseEntity<Long> getUserByName(@PathVariable("user-id") String name){
+    public ResponseEntity<Long> getUserByName(@PathVariable("user-name") String name){
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUserIdByName(name));
     }
 }

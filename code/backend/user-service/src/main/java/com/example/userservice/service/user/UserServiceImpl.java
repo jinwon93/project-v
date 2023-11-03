@@ -1,4 +1,4 @@
-package com.example.userservice.service;
+package com.example.userservice.service.user;
 
 import com.example.userservice.client.ClubServiceClient;
 import com.example.userservice.dto.user.request.RequestUpdateUserEmail;

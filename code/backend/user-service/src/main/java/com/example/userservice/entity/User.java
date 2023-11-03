@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Getter
 @NoArgsConstructor
@@ -51,6 +52,8 @@ public class User {
         this.gender = gender;
         this.profileImage = profileImage;
     }
+
+
 
     public void updateEmail(String newEmail){
         this.email = newEmail;
