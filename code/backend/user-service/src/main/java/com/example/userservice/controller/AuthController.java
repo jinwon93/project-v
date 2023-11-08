@@ -1,8 +1,10 @@
 package com.example.userservice.controller;
 
+import com.example.userservice.dto.user.request.RequestSignUpDto;
 import com.example.userservice.security.jwt.dto.RegenerateTokenDto;
 import com.example.userservice.security.jwt.dto.TokenDto;
 import com.example.userservice.service.auth.AuthService;
+import jakarta.validation.Valid;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
@@ -26,4 +28,14 @@ public class AuthController {
     }
 
 
+    @PostMapping("/signUp")
+    public ResponseEntity<Long> signUp(@Valid @RequestBody RequestSignUpDto requestSignUpDto){
+        return  ResponseEntity.status(HttpStatus.CREATED).body(authService.signUp(requestSignUpDto));
+    }
+
+    @PostMapping("/user/logout")
+    public ResponseEntity<Void> logout(@RequestBody TokenDto tokenDto){
+        authService.logout(tokenDto);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }
