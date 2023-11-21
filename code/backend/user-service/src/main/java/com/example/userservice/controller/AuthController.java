@@ -1,9 +1,12 @@
 package com.example.userservice.controller;
 
+import com.example.userservice.dto.email.AuthenticationEmailRequest;
+import com.example.userservice.dto.email.EmailCheckRequest;
 import com.example.userservice.dto.user.request.RequestSignUpDto;
 import com.example.userservice.security.jwt.dto.RegenerateTokenDto;
 import com.example.userservice.security.jwt.dto.TokenDto;
 import com.example.userservice.service.auth.AuthService;
+import jakarta.persistence.PreUpdate;
 import jakarta.validation.Valid;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +40,20 @@ public class AuthController {
     public ResponseEntity<Void> logout(@RequestBody TokenDto tokenDto){
         authService.logout(tokenDto);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+
+    @PostMapping("/mail/send")
+    public ResponseEntity<Void> sendAuthenticationEmail(@RequestBody AuthenticationEmailRequest authenticationEmailRequest){
+        authService.sendAuthenticationEmail(authenticationEmailRequest.getEmail());
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+
+    @PostMapping("/mail/check")
+    public ResponseEntity<Void> verifyAuthentication(@RequestBody EmailCheckRequest emailCheckRequest){
+        authService.verifyAuthenticationCode(emailCheckRequest.getEmail() , emailCheckRequest.getCode());
+        return ResponseEntity.status(HttpStatus.OK).build();
+
     }
 }
