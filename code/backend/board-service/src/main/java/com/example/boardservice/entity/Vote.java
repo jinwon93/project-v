@@ -1,10 +1,7 @@
 package com.example.boardservice.entity;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,14 +20,18 @@ public class Vote extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
     private Post post;
 
     private Long clubId;
 
     private Long writerId;
 
+    @OneToMany(mappedBy = "vote", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<VoteItem> voteItems;
 
+    @OneToMany(mappedBy = "vote", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<VoteRecode> voteRecodes;
 
     private LocalDateTime localDateTime;

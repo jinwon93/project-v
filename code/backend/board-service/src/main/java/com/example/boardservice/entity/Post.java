@@ -25,5 +25,6 @@ public class Post extends BaseEntity{
 
     private String content;
 
+    @OneToOne(mappedBy = "post", cascade = CascadeType.REMOVE , orphanRemoval = true)
     private Vote vote;
 }
