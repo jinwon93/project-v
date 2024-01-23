@@ -4,12 +4,13 @@ package com.example.boardservice.entity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.awt.*;
 
 @Entity
 @Getter
-
+@NoArgsConstructor
 public class Comment  extends BaseEntity {
 
     @Id
