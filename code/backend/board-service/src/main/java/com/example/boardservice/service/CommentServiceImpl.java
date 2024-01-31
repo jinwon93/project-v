@@ -7,6 +7,7 @@ import com.example.boardservice.dto.comment.response.CommentResponseDto;
 import com.example.boardservice.entity.Comment;
 import com.example.boardservice.repository.CommentRepository;
 
+import com.example.boardservice.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 public class CommentServiceImpl  implements CommentService{
 
     CommentRepository commentRepository;
+
+    PostRepository postRepository;
 
     ClientService clientService;
 
